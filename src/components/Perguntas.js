@@ -1,13 +1,17 @@
-import deck1 from "../deck1";
 import Pergunta from "./Pergunta";
 
-export default function Perguntas() {
-  return deck1.map((p, index) => (
+export default function Perguntas(props) {
+  const {respondidos, setRespondidos, deck, listaResultado, setListaResultado} = props
+  return deck.map((p, index) => (
     <Pergunta
       index={index}
       pergunta={p.pergunta}
       resposta={p.resposta}
       isOpen={p.isOpen}
+      respondidos={respondidos}
+      setRespondidos={setRespondidos}
+      listaResultado={listaResultado}
+      setListaResultado={setListaResultado}
     />
   ));
 }
