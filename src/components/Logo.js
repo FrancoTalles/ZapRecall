@@ -18,7 +18,7 @@ const LogoContainer = styled.div`
     width: 52px;
   }
   h1 {
-    font-family: "Righteous";
+    font-family: 'Righteous', cursive;
     font-style: normal;
     font-weight: 700;
     font-size: 36px;

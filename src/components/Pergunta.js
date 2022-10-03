@@ -125,7 +125,7 @@ const PerguntaFechada = styled.div`
   pointer-events: ${(props) =>
     props.inicio === "bloqueio" ? "none" : "initial"};
   p {
-    font-family: "Recursive";
+    font-family: 'Recursive', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -149,7 +149,7 @@ const PerguntaAberta = styled.div`
   background: #ffffd5;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  font-family: "Recursive";
+  font-family: 'Recursive', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -184,7 +184,7 @@ const ContainerBotoes = styled.div`
 
 const Button = styled.button`
   width: 90px;
-  font-family: "Recursive";
+  font-family: 'Recursive', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;

@@ -31,7 +31,7 @@ const BemVindo = styled.div`
     margin-top:230px
   }
   h1{
-    font-family: "Righteous";
+    font-family: 'Righteous', cursive;
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
@@ -48,7 +48,7 @@ const BemVindo = styled.div`
     color: #d70900;
     background-color: #ffffff;
     border: 1px solid #d70900;
-    font-family: "Recursive";
+    font-family: 'Recursive', sans-serif;
     font-style: normal;
     font-weight: 400px;
     font-size: 18px;
