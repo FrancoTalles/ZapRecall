@@ -1,7 +1,7 @@
 import Logo from "./Logo";
 import Perguntas from "./Perguntas";
 import Footer from "./Footer";
-import deck1 from "../deck1";
+import deck from "./deck";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -16,13 +16,13 @@ export default function Screen(props) {
       <Perguntas
         respondidos={respondidos}
         setRespondidos={setRespondidos}
-        deck={deck1}
+        deck={deck}
         listaResultado={listaResultado}
         setListaResultado={setListaResultado}
       />
       <Footer
         respondidos={respondidos}
-        deck={deck1}
+        deck={deck}
         listaResultado={listaResultado}
       />
     </ScreenContainer>

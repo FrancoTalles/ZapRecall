@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import certo from "../assets/img/icone_certo.png"
+import quase from "../assets/img/icone_quase.png"
+import erro from "../assets/img/icone_erro.png"
 
 export default function Footer(props) {
   const { respondidos, deck, listaResultado } = props;
@@ -9,9 +12,15 @@ export default function Footer(props) {
         {respondidos}/{deck.length} CONCLUÍDOS
       </span>
       <Resultados>
-        {listaResultado.map((p, index) => (
-          <img key={index} src={p} alt={p} />
-        ))}
+        {listaResultado.map((p, index) => {
+          if (p === "erro"){
+            return <img key={index} src={erro} alt={erro} />
+          }else if(p === "quase"){
+            return <img key={index} src={quase} alt={quase} />
+          }else if(p === "certo"){
+            return <img key={index} src={certo} alt={certo} />
+          }
+        })}
       </Resultados>
     </FooterConcluidos>
   );

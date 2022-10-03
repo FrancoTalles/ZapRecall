@@ -26,21 +26,21 @@ export default function Pergunta(props) {
       setStatusImg(erro);
       setRespondidos(respondidos + 1);
       const novaLista = [...listaResultado];
-      novaLista[index] = erro;
+      novaLista[index] = "erro";
       setListaResultado(novaLista);
     } else if (status === "quaseacertou") {
       setCorFinal("#ff922e");
       setStatusImg(quase);
       setRespondidos(respondidos + 1);
       const novaLista = [...listaResultado];
-      novaLista[index] = quase;
+      novaLista[index] = "quase";
       setListaResultado(novaLista);
     } else if (status === "acertou") {
       setCorFinal("#2fbe34");
       setStatusImg(certo);
       setRespondidos(respondidos + 1);
       const novaLista = [...listaResultado];
-      novaLista[index] = certo;
+      novaLista[index] = "certo";
       setListaResultado(novaLista);
     }
     setInicio("bloqueio");
