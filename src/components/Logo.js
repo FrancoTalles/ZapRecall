@@ -20,7 +20,7 @@ const LogoContainer = styled.div`
   h1 {
     font-family: "Righteous";
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 36px;
     line-height: 45px;
     color: #ffffff;

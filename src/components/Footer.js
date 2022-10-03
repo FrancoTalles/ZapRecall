@@ -1,6 +1,3 @@
-import certo from "../assets/img/icone_certo.png";
-import quase from "../assets/img/icone_quase.png";
-import erro from "../assets/img/icone_erro.png";
 import styled from "styled-components";
 
 export default function Footer(props) {
@@ -8,10 +5,14 @@ export default function Footer(props) {
 
   return (
     <FooterConcluidos>
-      <span>
+      <span data-identifier="flashcard-counter">
         {respondidos}/{deck.length} CONCLUÍDOS
       </span>
-      <div className="resultados"></div>
+      <Resultados>
+        {listaResultado.map((p, index) => (
+          <img key={index} src={p} alt={p} />
+        ))}
+      </Resultados>
     </FooterConcluidos>
   );
 }
@@ -31,4 +32,18 @@ const FooterConcluidos = styled.div`
   font-size: 18px;
   color: #333333;
   padding: 10px;
+`;
+
+const Resultados = styled.div`
+  display: flex;
+  width: 100%;
+  margin: 10px 0px;
+  justify-content: center;
+  img {
+    width: 15px;
+    height: 15px;
+    margin: 0px 2px;
+    border: 1px solid #ffffff;
+    border-radius: 50px;
+  }
 `;

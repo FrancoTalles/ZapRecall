@@ -5,12 +5,13 @@ import deck1 from "../deck1";
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function Screen() {
+export default function Screen(props) {
   const [respondidos, setRespondidos] = useState(0);
   const [listaResultado, setListaResultado] = useState([]);
+  const {exibir} = props;
 
   return (
-    <ScreenContainer>
+    <ScreenContainer exibir={exibir}>
       <Logo />
       <Perguntas
         respondidos={respondidos}
@@ -19,19 +20,23 @@ export default function Screen() {
         listaResultado={listaResultado}
         setListaResultado={setListaResultado}
       />
-      <Footer respondidos={respondidos} deck={deck1} listaResultado={listaResultado} />
+      <Footer
+        respondidos={respondidos}
+        deck={deck1}
+        listaResultado={listaResultado}
+      />
     </ScreenContainer>
   );
 }
 
 const ScreenContainer = styled.div`
-  background-color: #FB6B6B;
+  background-color: #fb6b6b;
   width: 100vw;
   min-height: 100vh;
-  display: flex;
+  display: ${(props) => (props.exibir === "desaparece" ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   margin: 0px;
   padding: 0px;
   padding-bottom: 200px;
-`
+`;

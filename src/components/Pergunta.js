@@ -12,31 +12,36 @@ export default function Pergunta(props) {
   const [solucao, setSolucao] = useState("escondido");
   const [corFinal, setCorFinal] = useState("#333333");
   const [statusImg, setStatusImg] = useState(play);
-  const { respondidos, setRespondidos, listaResultado, setListaResultado } =
-    props;
+  const {
+    respondidos,
+    setRespondidos,
+    listaResultado,
+    setListaResultado,
+    index,
+  } = props;
 
-  function zero(status) {
+  function zero(status, index) {
     if (status === "errou") {
       setCorFinal("#ff3030");
       setStatusImg(erro);
       setRespondidos(respondidos + 1);
-      const novaLista = [...listaResultado, "erro"];
+      const novaLista = [...listaResultado];
+      novaLista[index] = erro;
       setListaResultado(novaLista);
-      console.log(listaResultado);
     } else if (status === "quaseacertou") {
       setCorFinal("#ff922e");
       setStatusImg(quase);
       setRespondidos(respondidos + 1);
-      const novaLista = [...listaResultado, "quase"];
+      const novaLista = [...listaResultado];
+      novaLista[index] = quase;
       setListaResultado(novaLista);
-      console.log(listaResultado);
     } else if (status === "acertou") {
       setCorFinal("#2fbe34");
       setStatusImg(certo);
       setRespondidos(respondidos + 1);
-      const novaLista = [...listaResultado, "certo"];
+      const novaLista = [...listaResultado];
+      novaLista[index] = certo;
       setListaResultado(novaLista);
-      console.log(listaResultado);
     }
     setInicio("bloqueio");
     setQuestao("escondido");
@@ -54,24 +59,51 @@ export default function Pergunta(props) {
   }
   return (
     <>
-      <PerguntaFechada inicio={inicio} corFinal={corFinal}>
-        <p>Pergunta {props.index + 1}</p>
-        <img src={statusImg} alt={statusImg} onClick={botaoPlay} />
+      <PerguntaFechada
+        key={index}
+        inicio={inicio}
+        corFinal={corFinal}
+        data-identifier="flashcard"
+      >
+        <p data-identifier="flashcard-index-item">Pergunta {props.index + 1}</p>
+        <img
+          data-identifier="flashcard-show-btn flashcard-status"
+          src={statusImg}
+          alt={statusImg}
+          onClick={botaoPlay}
+        />
       </PerguntaFechada>
       <Questao questao={questao}>
-        <p>{props.pergunta}</p>
-        <img src={virar} alt={virar} onClick={botaoVirar} />
+        <p data-identifier="flashcard-question">{props.pergunta}</p>
+        <img
+          data-identifier="flashcard-turn-btn"
+          src={virar}
+          alt={virar}
+          onClick={botaoVirar}
+        />
       </Questao>
       <Solucao solucao={solucao}>
-        <p>{props.resposta}</p>
+        <p data-identifier="flashcard-answer">{props.resposta}</p>
         <ContainerBotoes>
-          <Button onClick={() => zero("errou")} color={"#ff3030"}>
+          <Button
+            data-identifier="forgot-btn"
+            onClick={() => zero("errou", props.index)}
+            color={"#ff3030"}
+          >
             Não lembrei
           </Button>
-          <Button onClick={() => zero("quaseacertou")} color={"#ff922e"}>
+          <Button
+            data-identifier="almost-forgot-btn"
+            onClick={() => zero("quaseacertou", props.index)}
+            color={"#ff922e"}
+          >
             Quase não lembrei
           </Button>
-          <Button onClick={() => zero("acertou")} color={"#2fbe34"}>
+          <Button
+            data-identifier="zap-btn"
+            onClick={() => zero("acertou", props.index)}
+            color={"#2fbe34"}
+          >
             Zap
           </Button>
         </ContainerBotoes>
@@ -99,8 +131,13 @@ const PerguntaFechada = styled.div`
     font-size: 16px;
     line-height: 19px;
     color: ${(props) => props.corFinal};
-    text-decoration: ${(props) => props.inicio === "bloqueio" ? "line-through" : "initial"};
-    text-decoration-color: ${(props) => props.inicio === "bloqueio" ? "line-through" : "initial"};
+    text-decoration: ${(props) =>
+      props.inicio === "bloqueio" ? "line-through" : "initial"};
+    text-decoration-color: ${(props) =>
+      props.inicio === "bloqueio" ? "line-through" : "initial"};
+  }
+  img {
+    cursor: pointer;
   }
 `;
 
@@ -126,6 +163,7 @@ const PerguntaAberta = styled.div`
     position: absolute;
     bottom: 10px;
     right: 10px;
+    cursor: pointer;
   }
 `;
 
@@ -158,11 +196,8 @@ const Button = styled.button`
   color: #ffffff;
   background-color: ${(props) => props.color};
   border-radius: 5px;
-  border: 1px solid blue;
+  border: 1px solid ${(props) => props.color};
   padding: 5px;
   margin: 0px 5px;
+  cursor: pointer;
 `;
-
-// VERDE = "#2FBE34"
-//   AMARELO = "#FF922E"
-//   VERMELHO = "#FF3030"
